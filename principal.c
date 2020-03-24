@@ -1,13 +1,15 @@
 #include "gassp72.h"
+#include "stdint.h"
 
-int Periode_en_Tck = 20;
+int Periode_en_Tck = 72000;
 
 extern void timer_callback(void);
 
-static int etat_PB1 = 0;
+int etat_PB1 = 0;
 
 int main(void)
 {
+	etat_PB1 = etat_PB1;
 	// activation de la PLL qui multiplie la fréquence du quartz par 9
 	CLOCK_Configure();
 
@@ -27,7 +29,7 @@ int main(void)
 	// lancement du timer
 	Run_Timer( TIM4 );
 	
-while	(1)
-	{
-	}
+	while	(1)
+		{
+		}
 }
