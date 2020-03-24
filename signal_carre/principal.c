@@ -9,7 +9,6 @@ int etat_PB1 = 0;
 
 int main(void)
 {
-	etat_PB1 = etat_PB1;
 	// activation de la PLL qui multiplie la fréquence du quartz par 9
 	CLOCK_Configure();
 
