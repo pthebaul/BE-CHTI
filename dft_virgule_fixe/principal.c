@@ -1,17 +1,19 @@
-extern double sommeTrigo(int);
+extern int sommeTrigo(int);
 
 int main(void) {
-	double max, min, tmp;
+	signed int resultat;
+	signed int min = 40000;
+	signed int max = 20000;
 	for (int i = 0; i < 64; ++i)
 	{
-		tmp = sommeTrigo(i);
-		if (tmp > max)
+		resultat = sommeTrigo(i);
+		if (resultat > max)
 		{
-			max = tmp;
+			max = resultat;
 		}
-		if (tmp < min)
+		if (resultat < min)
 		{
-			min = tmp;
+			min = resultat;
 		}
 	}
 	while	(1) {}

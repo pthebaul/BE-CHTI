@@ -4,18 +4,18 @@
 	export sommeTrigo
 	
 sommeTrigo	proc
-	push{r5, r6, lr}
-	ldr r5, =TabSin
-	ldr r6, =TabCos
-	ldrsh r1, [r5, r0, lsl #1] ;sin
-	ldrsh r2, [r6, r0, lsl #1] ;cos
+	ldr	r3, =TabCos
+	ldrsh	r1, [r3, r0, lsl #1]
+
+	ldr	r3, =TabSin
+	ldrsh	r2, [r3, r0, lsl #1]
 	
-	mul r0, r1, r1
-	mul r1, r2, r2
+	mov	r0, #0
+	mla	r0, r1, r1, r0
+	mla	r0, r2, r2, r0
 	
-	add r0, r1
-	lsr r0, #15
-	pop{r5, r6, pc}
+	lsr	r0, #15
+	bx	lr
 	endp
 		
 	end
