@@ -1,7 +1,6 @@
 	AREA Dft, CODE, READONLY
 	IMPORT	TabSin
 	IMPORT	TabCos
-	IMPORT	TabSig
 	EXPORT	M2dft
 	
 N EQU 64	

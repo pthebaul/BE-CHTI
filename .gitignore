@@ -1,0 +1,8 @@
+DebugConfig/
+Obj/
+RTE/
+
+EventRecorderStub.scvd
+Project.uvguix.*
+
+*.lst
