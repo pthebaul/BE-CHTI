@@ -12,6 +12,7 @@ typedef struct {
 	volatile unsigned short * dma_buf;
 	int compteur[NbPlayers];
 	int scores[NbPlayers];
+	char isValid;
 } global_t;
 
 global_t global;
@@ -22,12 +23,15 @@ void initGlobal() {
 		global.compteur[i] = 0; 
 		global.scores[i] = 0;
 	}
+	global.isValid = 0;
 }
 
 void sys_callback(void) {
 	GPIO_Set(GPIOB, 1);
 	int i, k, module;
 	const int kPlayers[NbPlayers] = {17, 18, 19, 20, 23, 24};
+	global.isValid = 0;
+	
 	// Démarrage DMA pour 64 points
 	Start_DMA1(64);
 	Wait_On_End_Of_DMA1();
@@ -40,13 +44,17 @@ void sys_callback(void) {
 		} else {
 			global.compteur[i] = 0;
 		}
+		
+		if (global.compteur[i] == VALIDATION) {
+			global.isValid = 1;
+			global.scores[i]++;
+		}
 	}
 	GPIO_Clear(GPIOB, 1);
 }
 
 int main(void) {
 	initGlobal();
-	int oldCompt[NbPlayers] = {0,0,0,0,0,0};
 	
 	// activation de la PLL qui multiplie la fréquence du quartz par 9
 	CLOCK_Configure();
@@ -58,7 +66,7 @@ int main(void) {
 	GPIO_Configure(GPIOB, 14, OUTPUT, OUTPUT_PPULL);
 
 	// activation ADC, sampling time 1us
-	Init_TimingADC_ActiveADC_ff(ADC1, 0x33);
+	Init_TimingADC_ActiveADC_ff(ADC1, 0x31);
 	Single_Channel_ADC(ADC1, 2);
 	// Déclenchement ADC par timer2, periode (72MHz/320kHz)ticks
 	Init_Conversion_On_Trig_Timer_ff(ADC1, TIM2_CC2, 225);
@@ -73,17 +81,7 @@ int main(void) {
 	SysTick_On;
 	SysTick_Enable_IT;
 while	(1) {
-	char isValid = 0;
-	for(int i = 0; i < NbPlayers; i++) {
-		if ((global.compteur[i] == VALIDATION) && (oldCompt[i] != global.compteur[i])){
-			isValid = 1;
-			global.scores[i]++;
-		}
-		oldCompt[i] = global.compteur[i];
-	}
-	
-	
-	if (isValid) { //Led
+	if (global.isValid) { //Led
 		GPIO_Set(GPIOB, 14);
 	} else {
 		GPIO_Clear(GPIOB, 14);
