@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGDARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(111=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(120=-1,-1,-1,-1,0)(121=1179,154,1600,581,0)(122=-1,-1,-1,-1,0)(123=-1,-1,-1,-1,0)(140=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)(190=-1,-1,-1,-1,0)(200=-1,-1,-1,-1,0)(170=-1,-1,-1,-1,0)(130=-1,-1,-1,-1,0)(131=-1,-1,-1,-1,0)(132=-1,-1,-1,-1,0)(133=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(211=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(221=-1,-1,-1,-1,0)(230=-1,-1,-1,-1,0)(234=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(111=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(120=-1,-1,-1,-1,0)(121=945,154,1366,581,0)(122=-1,-1,-1,-1,0)(123=-1,-1,-1,-1,0)(140=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)(190=-1,-1,-1,-1,0)(200=-1,-1,-1,-1,0)(170=-1,-1,-1,-1,0)(130=-1,-1,-1,-1,0)(131=-1,-1,-1,-1,0)(132=-1,-1,-1,-1,0)(133=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(211=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(221=-1,-1,-1,-1,0)(230=-1,-1,-1,-1,0)(234=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -158,29 +158,24 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>module</ItemText>
+          <ItemText>tab[k]</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>tab</ItemText>
+          <ItemText>k</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>k</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>global</ItemText>
+          <ItemText>etat</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
-          <SubType>265</SubType>
-          <ItemText>0x08000200</ItemText>
+          <SubType>0</SubType>
+          <ItemText>0x08000a1c</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
@@ -229,13 +224,8 @@
       <LogicAnalyzers>
         <Wi>
           <IntNumber>0</IntNumber>
-          <FirstString>((portb &amp; 0x00000002) &gt;&gt; 1 &amp; 0x2) &gt;&gt; 1</FirstString>
-          <SecondString>FF0000000000000000000000000000000000F03F0100000000000000000000000000000028706F7274622026203078303030303030303229203E3E2031000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000000000000000E03F1700000000000000000000000000000000000000AE0E0008</SecondString>
-        </Wi>
-        <Wi>
-          <IntNumber>1</IntNumber>
-          <FirstString>((portb &amp; 0x00004000) &gt;&gt; 14 &amp; 0x4000) &gt;&gt; 14</FirstString>
-          <SecondString>008000000000000000000000000000000000F03F0100000000000000000000000000000028706F7274622026203078303030303430303029203E3E2031340000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000000000000000E03F1700000000000000000000000000000000000000AE0E0008</SecondString>
+          <FirstString>`TIM3_CCR3</FirstString>
+          <SecondString>FF000000000000000000000000000000007084400000000000000000000000000000000054494D335F4343523300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000000000000000F03F1800000000000000000000000000000000000000B0090008</SecondString>
         </Wi>
       </LogicAnalyzers>
       <DebugDescription>
@@ -261,8 +251,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Src\dft.s</PathWithFileName>
-      <FilenameWithoutPath>dft.s</FilenameWithoutPath>
+      <PathWithFileName>.\Src\startup-rvds.s</PathWithFileName>
+      <FilenameWithoutPath>startup-rvds.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -278,43 +268,51 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>Tables</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>2</GroupNumber>
+      <GroupNumber>1</GroupNumber>
       <FileNumber>3</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\tables\trigo.asm</PathWithFileName>
-      <FilenameWithoutPath>trigo.asm</FilenameWithoutPath>
+      <PathWithFileName>.\dft.s</PathWithFileName>
+      <FilenameWithoutPath>dft.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>Sys</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>3</GroupNumber>
+      <GroupNumber>1</GroupNumber>
       <FileNumber>4</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Sys\startup-rvds.s</PathWithFileName>
-      <FilenameWithoutPath>startup-rvds.s</FilenameWithoutPath>
+      <PathWithFileName>.\tables.s</PathWithFileName>
+      <FilenameWithoutPath>tables.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Src\arghh.asm</PathWithFileName>
+      <FilenameWithoutPath>arghh.asm</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\son.s</PathWithFileName>
+      <FilenameWithoutPath>son.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -327,13 +325,13 @@
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>5</FileNumber>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>7</FileNumber>
       <FileType>4</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Driver\GFSSP72\gfssp72.lib</PathWithFileName>
+      <PathWithFileName>.\GFSSP72\gfssp72.lib</PathWithFileName>
       <FilenameWithoutPath>gfssp72.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

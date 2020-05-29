@@ -1,90 +1,52 @@
 #include "gassp72.h"
-#include <stdlib.h>
-#include <string.h>
-#define M2Tir 985661
-#define SYSTICK_PER 360000
-#define NbPlayers 6
-#define VALIDATION 3
+#include "stdint.h"
+#include <stdio.h>
 
-extern int 		M2dft(short*, int);
+// Nombre de périodes
+// Correspond au nombre de périodes pendant la durée du son à la fréquence de 72MHz
+#define Periode_PWM_en_Tck 654
+#define Periode_en_Tck 6530
+
 
 typedef struct {
-	volatile unsigned short * dma_buf;
-	int compteur[NbPlayers];
-	int scores[NbPlayers];
-	char isValid;
-} global_t;
+	int position;		// index courant dans le tableau d'echantillons
+	int taille;			// nombre d'echantillons de l'enregistrement
+	short int * son;	// adresse de base du tableau d'echantillons en ROM
+	int resolution;		// pleine echelle du modulateur PWM
+	int Tech_en_Tck;	// periode d'ech. audio en periodes d'horloge CPU
+} type_etat ;
 
-global_t global;
+extern short Son ;
+extern int LongueurSon ;
+extern int PeriodeSonMicroSec ;
+extern void timer_callback(void);
 
-void initGlobal() {
-	global.dma_buf = malloc(64*sizeof(short));
-	for(int i = 0; i < NbPlayers; i++) { 
-		global.compteur[i] = 0; 
-		global.scores[i] = 0;
-	}
-	global.isValid = 0;
-}
-
-void sys_callback(void) {
-	GPIO_Set(GPIOB, 1);
-	int i, k, module;
-	const int kPlayers[NbPlayers] = {17, 18, 19, 20, 23, 24};
-	global.isValid = 0;
-	
-	// Démarrage DMA pour 64 points
-	Start_DMA1(64);
-	Wait_On_End_Of_DMA1();
-	Stop_DMA1;
-	for(i = 0; i < NbPlayers; i++) {
-		k = kPlayers[i];
-		module = M2dft((short *)global.dma_buf, k);
-		if (module >= M2Tir) {
-			global.compteur[i]++;
-		} else {
-			global.compteur[i] = 0;
-		}
-		
-		if (global.compteur[i] == VALIDATION) {
-			global.isValid = 1;
-			global.scores[i]++;
-		}
-	}
-	GPIO_Clear(GPIOB, 1);
-}
+type_etat etat ;
 
 int main(void) {
-	initGlobal();
+	etat.position 	 = 0 ;
+	etat.son 		 		 = &Son ;
+	etat.taille 	 	 = LongueurSon ;
+	etat.Tech_en_Tck = PeriodeSonMicroSec ;
 	
-	// activation de la PLL qui multiplie la fréquence du quartz par 9
-	CLOCK_Configure();
-	// PA2 (ADC voie 2) = entrée analog
-	GPIO_Configure(GPIOA, 2, INPUT, ANALOG);
-	// PB1 = sortie pour profilage à l'oscillo
-	GPIO_Configure(GPIOB, 1, OUTPUT, OUTPUT_PPULL);
-	// PB14 = sortie pour LED
-	GPIO_Configure(GPIOB, 14, OUTPUT, OUTPUT_PPULL);
-
-	// activation ADC, sampling time 1us
-	Init_TimingADC_ActiveADC_ff(ADC1, 0x31);
-	Single_Channel_ADC(ADC1, 2);
-	// Déclenchement ADC par timer2, periode (72MHz/320kHz)ticks
-	Init_Conversion_On_Trig_Timer_ff(ADC1, TIM2_CC2, 225);
-	// Config DMA pour utilisation du buffer dma_buf (a créér)
-	Init_ADC1_DMA1(0, global.dma_buf);
-
-	// Config Timer, période exprimée en périodes horloge CPU (72 MHz)
-	Systick_Period_ff(SYSTICK_PER);
+	CLOCK_Configure() ;
+	
+	// config port PB0 pour être utilisé par TIM3-CH3
+	GPIO_Configure(GPIOB, 0, OUTPUT, ALT_PPULL);
+	// config TIM3-CH3 en mode PWM
+	etat.resolution = PWM_Init_ff( TIM3, 3, Periode_PWM_en_Tck  ) ;
+	
+	// initialisation du timer 4
+	// Periode_en_Tck doit fournir la durée entre interruptions,
+	// exprimée en périodes Tck de l'horloge principale du STM32 (72 MHz)
+	Timer_1234_Init_ff( TIM4, Periode_en_Tck );
 	// enregistrement de la fonction de traitement de l'interruption timer
-	// ici le 3 est la priorité, sys_callback est l'adresse de cette fonction, a créér en C
-	Systick_Prio_IT(3, sys_callback);
-	SysTick_On;
-	SysTick_Enable_IT;
-while	(1) {
-	if (global.isValid) { //Led
-		GPIO_Set(GPIOB, 14);
-	} else {
-		GPIO_Clear(GPIOB, 14);
-	}
-}
+	// ici le 2 est la priorité, timer_callback est l'adresse de cette fonction, a créér en asm,
+	// cette fonction doit être conforme à l'AAPCS
+	Active_IT_Debordement_Timer( TIM4, 2, timer_callback );
+	// lancement du timer
+	Run_Timer( TIM4 );
+	
+	while(1) {}
+	
 }
