@@ -15,6 +15,8 @@ Quatre tableaux sont importés dans `principal.c` : un tableau généré, et les
 
 Pour vérifier les valeurs intermédiaires calculées, il est possible de mettre un point d'arrêt dans `dft.s` sur la ligne 44. Les registres R4 et R0 contiendront alors respectivement les parties réelles et imaginaires. Les modules au carrés sont stockés dans un tableau d'entiers `tab`, dans `principal.c`.
 
+#### Objectif 3 : afficher le son
+Après avoir démarré le débugueur, démarrez le Logic Analyzer. Cliquez sur Setup (en haut à gauche). Ensuite, ajoutez un nouveau signal *TIM3_CCR3* en mode analogique. Lancez l'exécution. Afin de voir correctement le son, vous pouvez cliquez sur le bouton *Auto* de la colonne *Min/Max*. 
 
 ### À propos
 
