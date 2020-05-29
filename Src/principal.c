@@ -84,7 +84,7 @@ void sys_callback(void) {
 		if (global.compteur[i] == NOMBRE_FENETRES_VALIDATION) {
 			global.isValid = 1;
 			global.scores[i]++;
-			etat.position = 0;
+			etat.position = 0; // Point d'arrêt sur cette ligne :D
 		}
 	}
 	GPIO_Clear(GPIOB, 1);
