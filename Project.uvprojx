@@ -388,9 +388,9 @@
               <FilePath>.\Src\principal.c</FilePath>
             </File>
             <File>
-              <FileName>arghh.asm</FileName>
+              <FileName>son.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\Src\arghh.asm</FilePath>
+              <FilePath>.\Src\son.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -418,9 +418,9 @@
           <GroupName>Data</GroupName>
           <Files>
             <File>
-              <FileName>son.s</FileName>
+              <FileName>arghh.asm</FileName>
               <FileType>2</FileType>
-              <FilePath>.\Data\son.s</FilePath>
+              <FilePath>.\Data\arghh.asm</FilePath>
             </File>
           </Files>
         </Group>

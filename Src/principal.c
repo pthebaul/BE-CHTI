@@ -19,7 +19,7 @@ typedef struct {
 extern short Son ;
 extern int LongueurSon ;
 extern int PeriodeSonMicroSec ;
-extern void timer_callback(void);
+extern void generate_sound(void);
 
 type_etat etat ;
 
@@ -43,7 +43,7 @@ int main(void) {
 	// enregistrement de la fonction de traitement de l'interruption timer
 	// ici le 2 est la priorité, timer_callback est l'adresse de cette fonction, a créér en asm,
 	// cette fonction doit être conforme à l'AAPCS
-	Active_IT_Debordement_Timer( TIM4, 2, timer_callback );
+	Active_IT_Debordement_Timer( TIM4, 2, generate_sound );
 	// lancement du timer
 	Run_Timer( TIM4 );
 	

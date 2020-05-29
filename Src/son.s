@@ -1,6 +1,6 @@
 	thumb
 	area  moncode, CODE, READONLY
-	export timer_callback
+	export generate_sound
 	import LongueurSon
 	import PeriodeSonMicroSec
 	import Son
@@ -15,7 +15,7 @@ E_SON	equ	8
 E_RES	equ	12
 E_PER	equ	16
 
-timer_callback PROC
+generate_sound PROC
 	LDR R0, =etat
 	LDRSH R1, [R0, #E_POS] ; Position
 	LDRSH R2, [R0, #E_TAI] ; Taille de l'enregistrement
