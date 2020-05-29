@@ -1,19 +1,26 @@
-## Objectif 1 : Programmer la DFT en simulation sur un tableau de données imposés
+## Objectif 2 : Faire tourner la DFT «en réel» et gérer le score des 6 joueurs
 
 ### Description
 
-Le programme *main* appelle une fonction `M2dft()` écrite en assemleur qui renvoie le module mis au carré de la DFT de rang *k*. Le paramètre *k* (de 0 à 63) est fourni à la fonction ainsi que l'adresse du tableau de données imposé.
-
+Votre objectif ici est d'écrire un programme en C qui, périodiquement (Timer Systick, période 5 à 20ms) fait l'acquisition du signal, calcule la DFT et affecte le score à chacun des 6 joueurs.
 
 ### Guide de l'étudiant
 
-#### Choix du jeu de test
+#### Choix du scénario simulé
+Modifier la valeur définie par *SCENARIO_SIMULE* :
 
-Quatre tableaux sont importés dans `principal.c` : un tableau généré, et les trois tableaux qui sont les *jeux de test officiels*. Il est possible de choisir de les utiliser, en changeant le premier argument envoyé à `M2dft()` (`principal.c`, ligne 19).
+`#define SCENARIO_SIMULE 0x33` pour le "cas simple"
 
-#### Validation des tests
+#### Le point d'arrêt
+Placer un point d'arrêt à la ligne 51 (`global.scores[i]++;`) permet de s'arrêter juste avant l'ajout d'un point à un joueur.
 
-Pour vérifier les valeurs intermédiaires calculées, il est possible de mettre un point d'arrêt dans `dft.s` sur la ligne 44. Les registres R4 et R0 contiendront alors respectivement les parties réelles et imaginaires. Les modules au carrés sont stockés dans un tableau d'entiers `tab`, dans `principal.c`.
+#### Observation des scores
+Ajouter la variable `global.scores` à une *Watch Window* pour visualiser les scores au fil de l’exécution.
+
+#### Visualisations supplémentaires
+Deux bits du *GPIOB* sont utilisés lors de l’exécution. Il est possible de les observer avec le *Logic Analyser* :
+* Le `portb.1` qui est à 1 lors de l'exécution de la fonction `sys_callback`
+* Le `portb.14` qui est mis brièvement à 1 à chaque modification des scores
 
 
 ### À propos
