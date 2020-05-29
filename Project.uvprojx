@@ -383,6 +383,11 @@
           <GroupName>Sources</GroupName>
           <Files>
             <File>
+              <FileName>dft.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\dft.s</FilePath>
+            </File>
+            <File>
               <FileName>principal.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Src\principal.c</FilePath>
@@ -391,16 +396,6 @@
               <FileName>son.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\Src\son.s</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers</GroupName>
-          <Files>
-            <File>
-              <FileName>gfssp72.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>.\Driver\GFSSP72\gfssp72.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -415,12 +410,27 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>gfssp72.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>.\Driver\GFSSP72\gfssp72.lib</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Data</GroupName>
           <Files>
             <File>
               <FileName>arghh.asm</FileName>
               <FileType>2</FileType>
               <FilePath>.\Data\arghh.asm</FilePath>
+            </File>
+            <File>
+              <FileName>trigo.asm</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Data\trigo.asm</FilePath>
             </File>
           </Files>
         </Group>

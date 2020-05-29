@@ -1,22 +1,20 @@
-## Objectif 3 : Gérer le son
+## Objectif 1 : Programmer la DFT en simulation sur un tableau de données imposés
 
 ### Description
 
-Votre objectif consiste à déclencher depuis le *main*, l'émission d'un son (bruit de verre cassé). Concrètement la gestion de l'émission est faite sous interruption en assembleur.
+Le programme *main* appelle une fonction `M2dft()` écrite en assemleur qui renvoie le module mis au carré de la DFT de rang *k*. Le paramètre *k* (de 0 à 63) est fourni à la fonction ainsi que l'adresse du tableau de données imposé.
+
 
 ### Guide de l'étudiant
 
-Pour afficher le son dans le débugueur :
+#### Choix du jeu de test
 
-1. Ouvrir le Logic Analyzer
-2. Cliquer sur Setup
-3. Ajouter un nouveau signal *TIM3_CCR3* en mode analogique.
-4. Lancer l'exécution.
+Quatre tableaux sont importés dans `principal.c` : un tableau généré, et les trois tableaux qui sont les *jeux de test officiels*. Il est possible de choisir de les utiliser, en changeant le premier argument envoyé à `M2dft()` (`principal.c`, ligne 19).
 
-Et si le son n'est pas entièrement visible :
+#### Validation des tests
 
-5. Dans *Zoom*, cliquer sur *All*
-6. Dans *Min/Max*, cliquer sur *Auto*
+Pour vérifier les valeurs intermédiaires calculées, il est possible de mettre un point d'arrêt dans `dft.s` sur la ligne 44. Les registres R4 et R0 contiendront alors respectivement les parties réelles et imaginaires. Les modules au carrés sont stockés dans un tableau d'entiers `tab`, dans `principal.c`.
+
 
 ### À propos
 
